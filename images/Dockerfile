@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
 
 # Install swagger-coverage-commandline
 ENV SWAGGER_COVERAGE_VERSION=1.1.0
-RUN wget https://github.com/xingyu-he/swagger-coverage/releases/download/v1.1.0/swagger-coverage-commandline-1.1.0.zip \
+RUN wget https://github.com/xingyu-he/swagger-coverage/releases/download/v.1.1.0/swagger-coverage-commandline-1.1.0.zip \
     && unzip swagger-coverage-commandline-1.1.0.zip \
     && mv swagger-coverage-commandline-1.1.0 /opt/swagger-coverage \
     && rm swagger-coverage-commandline-1.1.0.zip \

@@ -15,9 +15,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - name: Build Image: jacoco-tool
+      - name: Build -- ringcentral/jacoco-tool
         run: |
           cd images
           IMAGE_NAME=ringcentral/jacoco-tool
+          JDK_VERSION="$(awk -F ':' '/FROM ringcentral\/jdk:/ {print $2}' Dockerfile)"
+          SWAGGER_VERSION="$(awk -F '=' '/ENV SWAGGER_COVERAGE_VERSION=/ {print $2}' Dockerfile)"
+          VERSION="${JDK_VERSION}-swagger-${SWAGGER_VERSION}"
           docker build -t ${IMAGE_NAME} -f Dockerfile .
-          docker tag "${IMAGE_NAME}" "${IMAGE_NAME}:latest"
